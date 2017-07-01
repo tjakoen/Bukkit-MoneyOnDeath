@@ -28,4 +28,13 @@ Currently no permissions, for now only OP's can access commands. Didn't see the 
 
 ## Download
 Download Jar on Bukkit: https://dev.bukkit.org/projects/moneyondeath
+
+## Future
+- Permissions
+- Ability to seperate functions for different death types (e.g. Mob, PVP, Drowned, etc.).
+- Log plugin events in a seperate file.
+- Color Plugin Messages
+- Proper help command
+
+
 ### Created by Tjakoen A. Stolk (Website)
