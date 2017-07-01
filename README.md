@@ -19,11 +19,13 @@ Currently no permissions, for now only OP's can access commands. Didn't see the 
 ```
 /DeathMoney help
 /DeathMoney info - get info on the current configuration
-/DeathMoney clear (Default) -
+/DeathMoney clear (Default)
 /DeathMoney amount <amount>
 /DeathMoney percent <percentage>
 /DeathMoney pvp <true|false> (Default: false)
 /DeathMoney op <true|false> (Default: false)
 ```
 
+## Download
+Download Jar on Bukkit: https://dev.bukkit.org/projects/moneyondeath
 ### Created by Tjakoen A. Stolk (Website)
