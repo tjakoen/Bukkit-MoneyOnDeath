@@ -1,0 +1,8 @@
+name: MoneyOnDeath
+main: io.tdc.MoneyOnDeath
+version: 1.0
+author: Tjakoen A. Stolk
+commands:
+  DeathMoney:
+      description: Toggle Monetary Death Penalty
+      usage: /DeathMoney help

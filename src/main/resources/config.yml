@@ -1,0 +1,9 @@
+conf:
+  setting: clear
+  pvp: false
+  op: false
+  clear: false
+  percent:
+    val: 50
+  amount:
+    val: 20
