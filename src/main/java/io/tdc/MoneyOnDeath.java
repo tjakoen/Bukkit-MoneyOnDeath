@@ -14,15 +14,17 @@ import java.util.logging.Logger;
 
 public class MoneyOnDeath extends JavaPlugin implements Listener{
     private static final Logger log = Logger.getLogger("Minecraft");
-    private Vault vault;
+    private static Vault vault;
+    private static Economy econ;
 
     @Override
     public void onEnable() {
         this.getServer().getPluginManager().registerEvents(this, this);
         this.saveDefaultConfig();
 
-        vault = new Vault();
         Server server = getServer();
+        vault = new Vault();
+        econ = vault.econ;
 
         if (!vault.setupEconomy(server)) {
             log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
@@ -72,10 +74,10 @@ public class MoneyOnDeath extends JavaPlugin implements Listener{
                 player.sendMessage("$" + deduction + " lost on death");
                 break;
             }
-            case "percentage": {
+            case "percent": {
                 double percentage = this.getConfig().getDouble("conf.percent.val");
                 percentage = percentage / 100;
-                double deductable = Math.round(balance - (balance * percentage));
+                double deductable = Math.round(balance * percentage);
                 econ.withdrawPlayer(player, deductable);
 
                 if(this.getConfig().getBoolean("conf.pvp") && killer != null) {
@@ -83,7 +85,8 @@ public class MoneyOnDeath extends JavaPlugin implements Listener{
                     playerKilled(player, killer, deductable);
                     break;
                 }
-                player.sendMessage("You have lost $" + balance);
+
+                player.sendMessage("You have lost $" + deductable);
                 break;
             }
         }
@@ -131,9 +134,9 @@ public class MoneyOnDeath extends JavaPlugin implements Listener{
                         try {
                             this.getConfig().set("conf.setting", "percent");
                             double amount = Double.parseDouble(args[1]);
-                            if (amount > 100 && amount < 0) {
-                                this.getConfig().set("conf.amount.val", amount);
-                                sender.sendMessage("Death Penalty amount set to " + amount + "%");
+                            if (!(amount > 100 || amount < 0)) {
+                                this.getConfig().set("conf.percent.val", amount);
+                                sender.sendMessage("Death Penalty percent set to " + amount + "%");
                             } else {
                                 sender.sendMessage("Invalid amount for percentage");
                                 return false;
